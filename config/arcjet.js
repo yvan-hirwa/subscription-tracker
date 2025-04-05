@@ -11,10 +11,11 @@ const aj = arcjet({
       shield({ mode: "LIVE" }),
       // Create a bot detection rule
       detectBot({
-        mode: "LIVE", // Blocks requests. Use "DRY_RUN" to log only
+        mode: "DRY_RUN", // Blocks requests. Use "DRY_RUN" to log only
         // Block all bots except the following
         allow: [
           "CATEGORY:SEARCH_ENGINE", // Google, Bing, etc
+          "UA:PostmanRuntime", // Postman
           ],
       }),
       // Create a token bucket rate limit. Other algorithms are supported.
