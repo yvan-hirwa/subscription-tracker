@@ -31,10 +31,12 @@ const subscriptionSchema = new mongoose.Schema({
         enum: ['sports','entertainment', 'utilities', 'food', 'transportation', 'health', 'other'],
         default: 'sports',
     },
-    payementMethod: {
+    paymentMethod: {
         type: String,
         required: true,
-        trim: true
+        trim: true,
+        default: 'credit card',
+        enum: ['credit card', 'debit card', 'paypal', 'bank transfer'],
     },
     status: {
         type: String,
@@ -46,7 +48,7 @@ const subscriptionSchema = new mongoose.Schema({
         type: Date,
         required: true,
         validate:{
-            validator: (Value)=> value<= new Date(),
+            validator: (value)=> value <= new Date(),
                 message:  'Start Date must be now or past',
             }
         },
@@ -54,7 +56,7 @@ const subscriptionSchema = new mongoose.Schema({
     renewalDate: {
         type: Date,
         validate:{
-            validator: function(Value){
+            validator: function(value){
                 return value > this.startDate;
             },
                 message:  'Renewal Date must be greater than Start Date',
@@ -80,7 +82,7 @@ subscriptionSchema.pre('save', function(next) {
             yearly: 365
         };
 
-        this.renewaldate = new Date(this.startDate);
+        this.renewalDate = new Date(this.startDate);
         this.renewalDate.setDate(this.renewalDate.getDate() + renewalPeriods[this.frequency]);
     }
 
