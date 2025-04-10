@@ -14,23 +14,23 @@ subscriptionRouter.get('/', getallsubscriptions);
 
 subscriptionRouter.post('/', authorize, createSubscription);
 
-subscriptionRouter.put('/:id', (req, res) => {
-    res.send({ title: 'UPDATE subscription' });
-});
+// subscriptionRouter.put('/:id', (req, res) => {
+//     res.send({ title: 'UPDATE subscription' });
+// });
 
-subscriptionRouter.delete('/:id', (req, res) => {
-    res.send({ title: 'DELETE subscription' });
-});
+// subscriptionRouter.delete('/:id', (req, res) => {
+//     res.send({ title: 'DELETE subscription' });
+// });
 
 subscriptionRouter.get('/user/:id', authorize, getUserSubscriptions);
 
-subscriptionRouter.put('/:id/cancel', (req, res) => {
-    res.send({ title: 'CANCEL subscription' });
-});
+// subscriptionRouter.put('/:id/cancel', (req, res) => {
+//     res.send({ title: 'CANCEL subscription' });
+// });
 
-subscriptionRouter.get('/upcoming-renewals', (req, res) => {
-    res.send({ title: 'GET upcoming renewals' });
-});
+// subscriptionRouter.get('/upcoming-renewals', (req, res) => {
+//     res.send({ title: 'GET upcoming renewals' });
+// });
 
 
 export default subscriptionRouter;  
